@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>V SimPPA 2026 — Simpósio de Pós-Graduação, Pesquisa e Extensão em Administração | PPA/UEM</title>
+<meta name="description" content="V Simpósio de Pós-Graduação, Pesquisa e Extensão em Administração do PPA/UEM. Submissão de trabalhos de 15/07 a 14/08/2026. Evento de 14 a 16 de setembro de 2026, Maringá-PR.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   CONFIGURAÇÃO ÚNICA NECESSÁRIA: no FIM deste arquivo,
+   cole a URL do Aplicativo da Web publicado no Apps Script
+   (procure por SCRIPT_URL).
+   ============================================================ */
+
+:root{
+  --tinta:#122B45;        /* azul-tinta institucional */
+  --tinta-claro:#1E4670;
+  --papel:#FBFAF7;        /* papel */
+  --grafite:#31373D;
+  --cinza:#6B7280;
+  --linha:#DDD8CE;
+  --ouro:#B98A2E;         /* fio de ouro acadêmico */
+  --ouro-claro:#F4E8CE;
+  --verde:#2F7D4F;
+  --vermelho:#B3402E;
+  --branco:#FFFFFF;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'IBM Plex Sans',sans-serif;background:var(--papel);color:var(--grafite);line-height:1.6;font-size:16px}
+h1,h2,h3{font-family:'IBM Plex Serif',serif;color:var(--tinta)}
+.mono{font-family:'IBM Plex Mono',monospace}
+.container{max-width:960px;margin:0 auto;padding:0 24px}
+
+/* ---------- topo ---------- */
+header{background:var(--tinta);color:var(--branco);padding:64px 0 56px;position:relative;overflow:hidden}
+header::after{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;background:var(--ouro)}
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--ouro-claro);margin-bottom:14px}
+header h1{color:var(--branco);font-size:clamp(30px,5vw,46px);line-height:1.15;font-weight:700;max-width:720px}
+header .sub{margin-top:16px;font-size:17px;color:#C9D4E2;max-width:640px}
+.datas-topo{margin-top:28px;display:flex;gap:28px;flex-wrap:wrap}
+.datas-topo div{border-left:2px solid var(--ouro);padding-left:12px}
+.datas-topo .rotulo{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#9DB0C6}
+.datas-topo .valor{font-family:'IBM Plex Serif',serif;font-size:19px;font-weight:600;color:var(--branco)}
+nav{background:var(--branco);border-bottom:1px solid var(--linha);position:sticky;top:0;z-index:50}
+nav .container{display:flex;gap:4px;overflow-x:auto}
+nav a{padding:14px 16px;font-size:14px;font-weight:500;color:var(--grafite);text-decoration:none;white-space:nowrap;border-bottom:2px solid transparent}
+nav a:hover,nav a:focus-visible{color:var(--tinta);border-bottom-color:var(--ouro);outline:none}
+
+/* ---------- seções ---------- */
+section{padding:56px 0}
+section+section{border-top:1px solid var(--linha)}
+h2{font-size:27px;margin-bottom:8px}
+.h2-sub{color:var(--cinza);margin-bottom:28px;max-width:640px}
+
+/* ---------- cronograma ---------- */
+.cronograma{list-style:none;max-width:640px}
+.cronograma li{display:flex;gap:18px;padding:13px 0;border-bottom:1px dashed var(--linha);align-items:baseline}
+.cronograma .data{font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:500;color:var(--tinta);min-width:150px}
+.cronograma .destaque .data,.cronograma .destaque .etapa{color:var(--ouro);font-weight:600}
+
+/* ---------- áreas (sumário) ---------- */
+.area-item{display:grid;grid-template-columns:64px 1fr;gap:18px;padding:22px 0;border-bottom:1px solid var(--linha)}
+.area-num{font-family:'IBM Plex Serif',serif;font-size:40px;font-weight:600;color:var(--ouro);line-height:1}
+.area-item h3{font-size:19px;margin-bottom:5px}
+.area-item p{font-size:15px;color:var(--cinza)}
+
+/* ---------- formulários ---------- */
+.card{background:var(--branco);border:1px solid var(--linha);border-radius:8px;padding:32px;max-width:720px}
+label{display:block;font-size:14px;font-weight:600;color:var(--tinta);margin:18px 0 6px}
+label .opc{font-weight:400;color:var(--cinza)}
+input[type=text],input[type=email],select,textarea{
+  width:100%;padding:10px 12px;border:1px solid var(--linha);border-radius:6px;
+  font-family:'IBM Plex Sans',sans-serif;font-size:15px;background:var(--papel);color:var(--grafite)
+}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--tinta-claro);outline-offset:1px;border-color:var(--tinta-claro)}
+textarea{min-height:120px;resize:vertical}
+.hint{font-size:13px;color:var(--cinza);margin-top:4px}
+.autor-bloco{border:1px dashed var(--linha);border-radius:6px;padding:14px 16px 18px;margin-top:10px;position:relative}
+.autor-bloco .tag{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ouro);text-transform:uppercase;letter-spacing:.08em}
+.remover-autor{position:absolute;top:10px;right:12px;background:none;border:none;color:var(--vermelho);cursor:pointer;font-size:13px;font-family:inherit}
+.botao{display:inline-block;background:var(--tinta);color:var(--branco);border:none;border-radius:6px;
+  padding:13px 26px;font-size:15px;font-weight:600;font-family:'IBM Plex Sans',sans-serif;cursor:pointer;margin-top:24px}
+.botao:hover{background:var(--tinta-claro)}
+.botao:focus-visible{outline:3px solid var(--ouro);outline-offset:2px}
+.botao[disabled]{opacity:.55;cursor:wait}
+.botao-sec{background:none;border:1px solid var(--tinta);color:var(--tinta);border-radius:6px;
+  padding:9px 16px;font-size:14px;font-weight:500;cursor:pointer;font-family:inherit;margin-top:12px}
+.botao-sec:hover{background:var(--ouro-claro)}
+.aviso{background:var(--ouro-claro);border-left:3px solid var(--ouro);padding:14px 16px;border-radius:0 6px 6px 0;font-size:14px;margin:20px 0}
+.msg-ok{background:#E8F3EC;border-left:3px solid var(--verde);padding:16px;border-radius:0 6px 6px 0;margin-top:20px}
+.msg-erro{background:#FBEAE6;border-left:3px solid var(--vermelho);padding:16px;border-radius:0 6px 6px 0;margin-top:20px;font-size:14px}
+.msg-ok .id{font-family:'IBM Plex Mono',monospace;font-size:22px;font-weight:600;color:var(--tinta);display:block;margin:6px 0}
+.check-linha{display:flex;gap:10px;align-items:flex-start;margin-top:18px;font-size:14px}
+.check-linha input{margin-top:4px}
+.criterio-bloco{padding:12px 0;border-bottom:1px dashed var(--linha)}
+.criterio-bloco .criterio{font-size:14px;font-weight:600;color:var(--tinta);display:block;margin-bottom:6px}
+.criterio-bloco select{max-width:220px}
+.status-caixa{margin-top:18px;padding:18px;background:var(--papel);border:1px solid var(--linha);border-radius:6px;font-size:15px}
+.status-caixa strong{color:var(--tinta)}
+
+footer{background:var(--tinta);color:#9DB0C6;padding:36px 0;font-size:14px;margin-top:40px}
+footer strong{color:var(--branco)}
+
+@media(max-width:640px){
+  .area-item{grid-template-columns:44px 1fr}
+  .area-num{font-size:30px}
+  .card{padding:22px}
+  .cronograma li{flex-direction:column;gap:2px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <p class="eyebrow">PPA · Universidade Estadual de Maringá</p>
+    <h1>V Simpósio de Pós-Graduação, Pesquisa e Extensão em Administração</h1>
+    <p class="sub">O V SimPPA reúne pesquisadores, docentes e estudantes para o debate da produção científica em Administração.</p>
+    <div class="datas-topo">
+      <div><div class="rotulo">Evento</div><div class="valor">14 a 16 · set · 2026</div></div>
+      <div><div class="rotulo">Submissões</div><div class="valor">15/07 → 14/08</div></div>
+      <div><div class="rotulo">Local</div><div class="valor">UEM · Maringá-PR</div></div>
+    </div>
+  </div>
+</header>
+
+<nav aria-label="Seções do site">
+  <div class="container">
+    <a href="#datas">Datas</a>
+    <a href="#areas">Áreas temáticas</a>
+    <a href="#normas">Normas</a>
+    <a href="#submeter">Submeter trabalho</a>
+    <a href="#status">Consultar status</a>
+    <a href="#avaliador">Área do avaliador</a>
+  </div>
+</nav>
+
+<!-- ==================== DATAS ==================== -->
+<section id="datas">
+  <div class="container">
+    <h2>Datas importantes</h2>
+    <p class="h2-sub">Calendário oficial do V SimPPA 2026.</p>
+    <ul class="cronograma">
+      <li><span class="data mono">15/07/2026</span><span class="etapa">Abertura das submissões</span></li>
+      <li class="destaque"><span class="data mono">14/08/2026</span><span class="etapa">Data-limite para submissão de trabalhos</span></li>
+      <li><span class="data mono">17/08 – 03/09</span><span class="etapa">Avaliação dos trabalhos pelos pareceristas</span></li>
+      <li><span class="data mono">04/09/2026</span><span class="etapa">Divulgação dos resultados</span></li>
+      <li><span class="data mono">09/09/2026</span><span class="etapa">Início das inscrições dos autores</span></li>
+      <li class="destaque"><span class="data mono">14–16/09/2026</span><span class="etapa">Realização do V SimPPA</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ==================== ÁREAS ==================== -->
+<section id="areas">
+  <div class="container">
+    <h2>Áreas temáticas</h2>
+    <p class="h2-sub">Escolha, no momento da submissão, a área que melhor dialoga com o seu trabalho.</p>
+
+    <div class="area-item">
+      <div class="area-num">1</div>
+      <div>
+        <h3>Marketing e Mercado</h3>
+        <p>Comportamento do Consumidor; Estratégias e Operações de Marketing; Marketing de Serviços, Varejo e B2B.</p>
+      </div>
+    </div>
+    <div class="area-item">
+      <div class="area-num">2</div>
+      <div>
+        <h3>Instituições e Economia das Organizações</h3>
+        <p>Economia das Organizações; Teoria dos Custos de Transação; Economia dos Custos de Mensuração; Direitos de Propriedade; Teoria da Agência; Coordenação de Sistemas Produtivos.</p>
+      </div>
+    </div>
+    <div class="area-item">
+      <div class="area-num">3</div>
+      <div>
+        <h3>Estudos Organizacionais e Sociedade</h3>
+        <p>Abordagem Institucional nos Estudos Organizacionais; Abordagens Relacionais às Organizações; Aprendizagem nas Organizações; Comportamento Organizacional; Simbolismos; Cultura e Identidades Organizacionais.</p>
+      </div>
+    </div>
+    <div class="area-item">
+      <div class="area-num">4</div>
+      <div>
+        <h3>Organização Industrial e Estratégia</h3>
+        <p>Cluster e Redes de Negócios; Estratégia Competitiva; Estratégia Corporativa e de Stakeholders; Estratégia Internacional e Globalização; Governança Corporativa; Pequenas e Médias Empresas; Processo Estratégico nas Organizações.</p>
+      </div>
+    </div>
+    <div class="area-item" style="border-bottom:none">
+      <div class="area-num">5</div>
+      <div>
+        <h3>Estudos em Ciências Sociais Aplicadas</h3>
+        <p>Administração Pública; Empreendedorismo; Ensino e Pesquisa em Administração; Finanças.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== NORMAS ==================== -->
+<section id="normas">
+  <div class="container">
+    <h2>Normas de submissão</h2>
+    <p class="h2-sub">Leia com atenção antes de enviar o trabalho.</p>
+    <div class="card">
+      <p><strong>Modalidades aceitas:</strong> Artigo Completo e Resumo Expandido.</p>
+      <p style="margin-top:12px"><strong>Formato do arquivo:</strong> PDF, com no máximo 10 MB.</p>
+      <p style="margin-top:12px"><strong>Identificação cega:</strong> o arquivo enviado <strong>não pode conter identificação dos autores</strong> — remova nomes, filiações, agradecimentos e propriedades do documento que identifiquem a autoria. Trabalhos identificados poderão ser desclassificados.</p>
+      <p style="margin-top:12px"><strong>Avaliação:</strong> cada trabalho será avaliado por dois pareceristas da área temática indicada, no sistema double-blind review.</p>
+      <p style="margin-top:12px"><strong>Publicação:</strong> os trabalhos aprovados e apresentados no evento serão publicados nos Anais do V SimPPA.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SUBMISSÃO ==================== -->
+<section id="submeter">
+  <div class="container">
+    <h2>Submeter trabalho</h2>
+    <p class="h2-sub">Preencha os dados abaixo. Após o envio, você receberá um ID de acompanhamento por e-mail.</p>
+
+    <div class="card">
+      <div id="form-submissao">
+        <label for="modalidade">Modalidade *</label>
+        <select id="modalidade" required>
+          <option value="">Selecione…</option>
+          <option>Artigo Completo</option>
+          <option>Resumo Expandido</option>
+        </select>
+
+        <label for="area">Área temática *</label>
+        <select id="area" required>
+          <option value="">Selecione…</option>
+          <option>1. Marketing e Mercado</option>
+          <option>2. Instituições e Economia das Organizações</option>
+          <option>3. Estudos Organizacionais e Sociedade</option>
+          <option>4. Organização Industrial e Estratégia</option>
+          <option>5. Estudos em Ciências Sociais Aplicadas</option>
+        </select>
+
+        <label for="titulo">Título do trabalho *</label>
+        <input type="text" id="titulo" maxlength="300" required>
+
+        <label for="resumo">Resumo *</label>
+        <textarea id="resumo" maxlength="3000" required></textarea>
+        <p class="hint">Cole aqui o resumo do trabalho (até 3.000 caracteres).</p>
+
+        <label for="palavras">Palavras-chave <span class="opc">(separadas por ponto e vírgula)</span></label>
+        <input type="text" id="palavras" maxlength="300" placeholder="ex.: estratégia; governança; PME">
+
+        <label>Autores *</label>
+        <p class="hint" style="margin-bottom:6px">O primeiro autor será o contato principal e receberá as comunicações do evento.</p>
+        <div id="autores"></div>
+        <button type="button" class="botao-sec" onclick="adicionarAutor()">+ Adicionar autor</button>
+
+        <label for="arquivo">Arquivo do trabalho (PDF, sem identificação dos autores) *</label>
+        <input type="file" id="arquivo" accept="application/pdf" required>
+        <p class="hint">Máximo 10 MB. Apenas PDF.</p>
+
+        <div class="check-linha">
+          <input type="checkbox" id="decl-cega">
+          <label for="decl-cega" style="margin:0;font-weight:400">Declaro que o arquivo enviado não contém identificação dos autores, conforme exigido para a avaliação cega. *</label>
+        </div>
+        <div class="check-linha">
+          <input type="checkbox" id="decl-ineditismo">
+          <label for="decl-ineditismo" style="margin:0;font-weight:400">Declaro estar ciente das normas de submissão do V SimPPA 2026. *</label>
+        </div>
+
+        <button type="button" class="botao" id="btn-enviar" onclick="enviarSubmissao()">Enviar trabalho</button>
+        <div id="resultado-submissao"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CONSULTA DE STATUS ==================== -->
+<section id="status">
+  <div class="container">
+    <h2>Consultar status</h2>
+    <p class="h2-sub">Informe o ID recebido por e-mail (ex.: SIMPPA26-001).</p>
+    <div class="card">
+      <label for="input-id">ID do trabalho</label>
+      <input type="text" id="input-id" class="mono" placeholder="SIMPPA26-000">
+      <button type="button" class="botao" onclick="consultarStatus()">Consultar</button>
+      <div id="resultado-status"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== ÁREA DO AVALIADOR ==================== -->
+<section id="avaliador">
+  <div class="container">
+    <h2>Área do avaliador</h2>
+    <p class="h2-sub">Prezado(a) parecerista: informe o código de avaliação recebido por e-mail para registrar seu parecer. Prazo: 03/09/2026.</p>
+    <div class="card">
+      <div id="passo-token">
+        <label for="input-token">Código de avaliação</label>
+        <input type="text" id="input-token" class="mono" placeholder="ex.: A1B2C3D4E5F6">
+        <button type="button" class="botao" onclick="abrirParecer()">Acessar avaliação</button>
+        <div id="erro-token"></div>
+      </div>
+
+      <div id="passo-parecer" style="display:none">
+        <div class="status-caixa" id="info-trabalho"></div>
+
+        <label style="margin-top:24px">Avaliação por critério</label>
+        <p class="hint">Atribua um conceito a cada critério: Muito Bom, Bom, Regular ou Fraco.</p>
+        <div id="grade-notas"></div>
+
+        <label for="recomendacao">Recomendação *</label>
+        <select id="recomendacao">
+          <option value="">Selecione…</option>
+          <option>Aprovar</option>
+          <option>Aprovar com ressalvas</option>
+          <option>Não aprovar</option>
+        </select>
+
+        <label for="coment-autor">Comentários aos autores <span class="opc">(serão enviados junto ao resultado)</span></label>
+        <textarea id="coment-autor" maxlength="5000"></textarea>
+
+        <label for="coment-comissao">Comentários confidenciais à comissão <span class="opc">(opcional)</span></label>
+        <textarea id="coment-comissao" maxlength="3000"></textarea>
+
+        <button type="button" class="botao" id="btn-parecer" onclick="enviarParecer()">Registrar parecer</button>
+        <div id="resultado-parecer"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <strong>V SimPPA 2026</strong> · Programa de Pós-Graduação em Administração — PPA/UEM<br>
+    Universidade Estadual de Maringá · Maringá, Paraná<br>
+    Dúvidas: <span id="email-contato">comissao@uem.br</span>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   ÚNICA CONFIGURAÇÃO NECESSÁRIA:
+   cole abaixo a URL do Aplicativo da Web (Apps Script).
+   Ela termina com /exec
+   ============================================================ */
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwOkufEQ6t8nTKtxOpgIpQkcB0ZqNYNerNtVNgmK2CotDASq6J5hgo7Ma6AVMDWNI46/exec";
+
+/* ---------- autores dinâmicos ---------- */
+let numAutores = 0;
+function adicionarAutor() {
+  numAutores++;
+  const div = document.createElement("div");
+  div.className = "autor-bloco";
+  div.innerHTML =
+    '<span class="tag">Autor ' + numAutores + (numAutores === 1 ? " · contato" : "") + '</span>' +
+    (numAutores > 1 ? '<button type="button" class="remover-autor" onclick="this.parentElement.remove()">remover</button>' : '') +
+    '<label>Nome completo *</label><input type="text" class="a-nome" maxlength="120">' +
+    '<label>E-mail *</label><input type="email" class="a-email" maxlength="120">' +
+    '<label>Instituição *</label><input type="text" class="a-inst" maxlength="160" placeholder="ex.: UEM">';
+  document.getElementById("autores").appendChild(div);
+}
+adicionarAutor();
+
+/* ---------- submissão ---------- */
+function coletarAutores() {
+  const blocos = document.querySelectorAll(".autor-bloco");
+  const lista = [];
+  for (const b of blocos) {
+    const nome = b.querySelector(".a-nome").value.trim();
+    const email = b.querySelector(".a-email").value.trim();
+    const inst = b.querySelector(".a-inst").value.trim();
+    if (!nome || !email || !inst) return null;
+    lista.push({ nome, email, instituicao: inst });
+  }
+  return lista.length ? lista : null;
+}
+
+function lerArquivoBase64(input) {
+  return new Promise((res, rej) => {
+    const f = input.files[0];
+    if (!f) return rej("Selecione o arquivo PDF.");
+    if (f.type !== "application/pdf") return rej("O arquivo deve ser PDF.");
+    if (f.size > 10 * 1024 * 1024) return rej("O arquivo excede 10 MB.");
+    const r = new FileReader();
+    r.onload = () => res(r.result.split(",")[1]);
+    r.onerror = () => rej("Falha ao ler o arquivo.");
+    r.readAsDataURL(f);
+  });
+}
+
+async function enviarSubmissao() {
+  const out = document.getElementById("resultado-submissao");
+  out.innerHTML = "";
+  const modalidade = document.getElementById("modalidade").value;
+  const area = document.getElementById("area").value;
+  const titulo = document.getElementById("titulo").value.trim();
+  const resumo = document.getElementById("resumo").value.trim();
+  const autores = coletarAutores();
+
+  if (!modalidade || !area || !titulo || !resumo || !autores) {
+    out.innerHTML = '<div class="msg-erro">Preencha todos os campos obrigatórios (incluindo nome, e-mail e instituição de cada autor).</div>';
+    return;
+  }
+  if (!document.getElementById("decl-cega").checked || !document.getElementById("decl-ineditismo").checked) {
+    out.innerHTML = '<div class="msg-erro">É necessário marcar as duas declarações para enviar.</div>';
+    return;
+  }
+
+  const btn = document.getElementById("btn-enviar");
+  btn.disabled = true; btn.textContent = "Enviando… aguarde";
+
+  try {
+    const arquivoBase64 = await lerArquivoBase64(document.getElementById("arquivo"));
+    const resp = await fetch(SCRIPT_URL, {
+      method: "POST",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify({
+        action: "submeter", modalidade, area, titulo, resumo,
+        palavrasChave: document.getElementById("palavras").value.trim(),
+        autores, arquivoBase64
+      })
+    });
+    const dados = await resp.json();
+    if (dados.ok) {
+      out.innerHTML =
+        '<div class="msg-ok">Trabalho enviado com sucesso! Guarde seu ID:' +
+        '<span class="id">' + dados.id + '</span>' +
+        'Uma confirmação foi enviada ao e-mail do primeiro autor. Use o ID para consultar o status.</div>';
+      document.getElementById("form-submissao").querySelectorAll("input,select,textarea").forEach(el => {
+        if (el.type === "checkbox") el.checked = false;
+        else el.value = "";
+      });
+    } else {
+      out.innerHTML = '<div class="msg-erro">' + (dados.erro || "Erro ao enviar.") + '</div>';
+    }
+  } catch (e) {
+    out.innerHTML = '<div class="msg-erro">' + (typeof e === "string" ? e : "Erro de conexão. Verifique sua internet e tente novamente.") + '</div>';
+  } finally {
+    btn.disabled = false; btn.textContent = "Enviar trabalho";
+  }
+}
+
+/* ---------- consulta de status ---------- */
+async function consultarStatus() {
+  const id = document.getElementById("input-id").value.trim();
+  const out = document.getElementById("resultado-status");
+  if (!id) { out.innerHTML = '<div class="msg-erro">Informe o ID do trabalho.</div>'; return; }
+  out.innerHTML = '<p class="hint">Consultando…</p>';
+  try {
+    const resp = await fetch(SCRIPT_URL + "?action=status&id=" + encodeURIComponent(id));
+    const d = await resp.json();
+    if (!d.ok) { out.innerHTML = '<div class="msg-erro">' + d.erro + '</div>'; return; }
+    out.innerHTML =
+      '<div class="status-caixa">' +
+      '<strong>' + d.id + '</strong> — ' + d.titulo + '<br>' +
+      'Área: ' + d.area + '<br>' +
+      'Status: <strong>' + d.status + '</strong>' +
+      (d.dataResultado ? '<br>Resultado divulgado em: ' + d.dataResultado : '') +
+      '</div>';
+  } catch (e) {
+    out.innerHTML = '<div class="msg-erro">Erro na consulta. Tente novamente.</div>';
+  }
+}
+document.getElementById("input-id").addEventListener("keydown", e => { if (e.key === "Enter") consultarStatus(); });
+
+/* ---------- área do avaliador ---------- */
+let tokenAtual = "";
+let totalCriterios = 10;
+async function abrirParecer() {
+  const token = document.getElementById("input-token").value.trim();
+  const erro = document.getElementById("erro-token");
+  erro.innerHTML = "";
+  if (!token) { erro.innerHTML = '<div class="msg-erro">Informe o código de avaliação.</div>'; return; }
+  erro.innerHTML = '<p class="hint">Verificando…</p>';
+  try {
+    const resp = await fetch(SCRIPT_URL + "?action=parecer&token=" + encodeURIComponent(token));
+    const d = await resp.json();
+    if (!d.ok) { erro.innerHTML = '<div class="msg-erro">' + d.erro + '</div>'; return; }
+    tokenAtual = token;
+    erro.innerHTML = "";
+    document.getElementById("passo-token").style.display = "none";
+    document.getElementById("passo-parecer").style.display = "block";
+    document.getElementById("info-trabalho").innerHTML =
+      '<strong>' + d.id + '</strong> — ' + d.titulo + '<br>Área: ' + d.area;
+    const grade = document.getElementById("grade-notas");
+    grade.innerHTML = "";
+    totalCriterios = d.criterios.length;
+    const opcoes = '<option value="">Selecione…</option>' +
+      d.conceitos.map(c => '<option>' + c + '</option>').join('');
+    d.criterios.forEach((c, i) => {
+      grade.innerHTML +=
+        '<div class="criterio-bloco">' +
+        '<span class="criterio">' + (i + 1) + '. ' + c + '</span>' +
+        '<select class="conceito" id="conceito' + i + '">' + opcoes + '</select>' +
+        '</div>';
+    });
+  } catch (e) {
+    erro.innerHTML = '<div class="msg-erro">Erro de conexão. Tente novamente.</div>';
+  }
+}
+
+async function enviarParecer() {
+  const out = document.getElementById("resultado-parecer");
+  out.innerHTML = "";
+  const conceitos = [];
+  for (let i = 0; i < totalCriterios; i++) {
+    const v = document.getElementById("conceito" + i).value;
+    if (!v) {
+      out.innerHTML = '<div class="msg-erro">Atribua um conceito a todos os ' + totalCriterios + ' critérios.</div>'; return;
+    }
+    conceitos.push(v);
+  }
+  const recomendacao = document.getElementById("recomendacao").value;
+  if (!recomendacao) { out.innerHTML = '<div class="msg-erro">Selecione a recomendação.</div>'; return; }
+
+  const btn = document.getElementById("btn-parecer");
+  btn.disabled = true; btn.textContent = "Registrando…";
+  try {
+    const resp = await fetch(SCRIPT_URL, {
+      method: "POST",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify({
+        action: "avaliar", token: tokenAtual, conceitos, recomendacao,
+        comentariosAutor: document.getElementById("coment-autor").value.trim(),
+        comentariosComissao: document.getElementById("coment-comissao").value.trim()
+      })
+    });
+    const d = await resp.json();
+    if (d.ok) {
+      document.getElementById("passo-parecer").innerHTML =
+        '<div class="msg-ok">Parecer registrado com sucesso. A comissão científica agradece sua colaboração!</div>';
+    } else {
+      out.innerHTML = '<div class="msg-erro">' + (d.erro || "Erro ao registrar.") + '</div>';
+      btn.disabled = false; btn.textContent = "Registrar parecer";
+    }
+  } catch (e) {
+    out.innerHTML = '<div class="msg-erro">Erro de conexão. Tente novamente.</div>';
+    btn.disabled = false; btn.textContent = "Registrar parecer";
+  }
+}
+</script>
+</body>
+</html>
