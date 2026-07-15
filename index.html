@@ -206,9 +206,9 @@ footer strong{color:var(--branco)}
     <h2>Normas de submissão</h2>
     <p class="h2-sub">Leia com atenção antes de enviar o trabalho.</p>
     <div class="card">
-      <p><strong>Modalidades aceitas:</strong> Artigo Completo, Resumo Expandido e Ensaio Teórico.</p>
+      <p><strong>Modalidades aceitas:</strong> "Artigo Completo", "Resumo Expandido" e "Ensaio Teórico / Projeto de Pesquisa.</p>
       <p style="margin-top:12px"><strong>Formato do arquivo:</strong> PDF, com no máximo 10 MB.</p>
-      <p style="margin-top:12px"><strong>Identificação cega:</strong> o arquivo enviado <strong>não pode conter identificação dos autores</strong> — remova nomes, filiações, agradecimentos e propriedades do documento que identifiquem a autoria. Trabalhos identificados poderão ser desclassificados.</p>
+      <p style="margin-top:12px"><strong>Avaliação cega:</strong> o arquivo enviado <strong>não pode conter identificação dos autores</strong> — remova nomes, filiações, agradecimentos e propriedades do documento que identifiquem a autoria. Trabalhos identificados poderão ser desclassificados.</p>
       <p style="margin-top:12px"><strong>Avaliação:</strong> cada trabalho será avaliado por dois pareceristas da área temática indicada, no sistema double-blind review.</p>
       <p style="margin-top:12px"><strong>Publicação:</strong> os trabalhos aprovados e apresentados no evento serão publicados nos Anais do V SimPPA.</p>
     </div>
@@ -228,7 +228,7 @@ footer strong{color:var(--branco)}
           <option value="">Selecione…</option>
           <option>Artigo Completo</option>
           <option>Resumo Expandido</option>
-          <option>Ensaio Teórico</option>
+          <option>Ensaio Teórico / Projeto de Pesquisa</option>
         </select>
 
         <label for="area">Área temática *</label>
@@ -294,6 +294,7 @@ footer strong{color:var(--branco)}
 <section id="avaliador">
   <div class="container">
     <h2>Área do avaliador</h2>
+    <a href="https://ppa.uem.br/v-simppa-2026/anais-das-edicoes-anteriores" target="_blank">Edições anteriores</a>
     <p class="h2-sub">Prezado(a) parecerista: informe o código de avaliação recebido por e-mail para registrar seu parecer. Prazo: 03/09/2026.</p>
     <div class="card">
       <div id="passo-token">
@@ -318,8 +319,9 @@ footer strong{color:var(--branco)}
           <option>Não aprovar</option>
         </select>
 
-        <label for="coment-autor">Comentários aos autores <span class="opc">(serão enviados junto ao resultado)</span></label>
-        <textarea id="coment-autor" maxlength="5000"></textarea>
+        <label for="coment-autor">Comentários aos autores * <span class="opc">(obrigatório — mínimo 150 palavras)</span></label>
+        <textarea id="coment-autor" maxlength="10000" oninput="atualizarContador()"></textarea>
+        <p class="hint" id="contador-palavras">0 / 150 palavras (mínimo)</p>
 
         <label for="coment-comissao">Comentários confidenciais à comissão <span class="opc">(opcional)</span></label>
         <textarea id="coment-comissao" maxlength="3000"></textarea>
@@ -335,7 +337,8 @@ footer strong{color:var(--branco)}
   <div class="container">
     <strong>V SimPPA 2026</strong> · Programa de Pós-Graduação em Administração — PPA/UEM<br>
     Universidade Estadual de Maringá · Maringá, Paraná<br>
-    Dúvidas: <span id="email-contato">comissao@uem.br</span>
+    Anais de edições anteriores: <a href="https://ppa.uem.br/v-simppa-2026/anais-das-edicoes-anteriores" target="_blank" style="color:#9DB0C6">ppa.uem.br</a><br> 
+    Dúvidas: <span id="email-contato">simppa@uem.br</span>
   </div>
 </footer>
 
@@ -345,7 +348,7 @@ footer strong{color:var(--branco)}
    cole abaixo a URL do Aplicativo da Web (Apps Script).
    Ela termina com /exec
    ============================================================ */
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwOkufEQ6t8nTKtxOpgIpQkcB0ZqNYNerNtVNgmK2CotDASq6J5hgo7Ma6AVMDWNI46/exec";
+const SCRIPT_URL = "COLE_AQUI_A_URL_DO_APPS_SCRIPT";
 
 /* ---------- autores dinâmicos ---------- */
 let numAutores = 0;
@@ -501,6 +504,18 @@ async function abrirParecer() {
   }
 }
 
+function contarPalavras(texto) {
+  return texto.trim().split(/\s+/).filter(p => p.length > 0).length;
+}
+
+function atualizarContador() {
+  const texto = document.getElementById("coment-autor").value;
+  const n = contarPalavras(texto);
+  const el = document.getElementById("contador-palavras");
+  el.textContent = n + " / 150 palavras (mínimo)";
+  el.style.color = n >= 150 ? "var(--verde)" : "var(--vermelho)";
+}
+
 async function enviarParecer() {
   const out = document.getElementById("resultado-parecer");
   out.innerHTML = "";
@@ -512,8 +527,18 @@ async function enviarParecer() {
     }
     conceitos.push(v);
   }
+  // Verifica se todos são "Não se aplica"
+  if (conceitos.every(c => c === "Não se aplica")) {
+    out.innerHTML = '<div class="msg-erro">Ao menos um critério deve receber um conceito diferente de "Não se aplica".</div>'; return;
+  }
   const recomendacao = document.getElementById("recomendacao").value;
   if (!recomendacao) { out.innerHTML = '<div class="msg-erro">Selecione a recomendação.</div>'; return; }
+  // Valida comentários aos autores (mínimo 150 palavras)
+  const textoAutor = document.getElementById("coment-autor").value.trim();
+  const nPalavras = contarPalavras(textoAutor);
+  if (nPalavras < 150) {
+    out.innerHTML = '<div class="msg-erro">Os comentários aos autores são obrigatórios e devem conter no mínimo 150 palavras. Atualmente: ' + nPalavras + ' palavra(s).</div>'; return;
+  }
 
   const btn = document.getElementById("btn-parecer");
   btn.disabled = true; btn.textContent = "Registrando…";
@@ -523,7 +548,7 @@ async function enviarParecer() {
       headers: { "Content-Type": "text/plain;charset=utf-8" },
       body: JSON.stringify({
         action: "avaliar", token: tokenAtual, conceitos, recomendacao,
-        comentariosAutor: document.getElementById("coment-autor").value.trim(),
+        comentariosAutor: textoAutor,
         comentariosComissao: document.getElementById("coment-comissao").value.trim()
       })
     });
