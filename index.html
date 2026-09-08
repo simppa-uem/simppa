@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>V SimPPA 2026 — Simpósio de Pós-Graduação, Pesquisa e Extensão em Administração | PPA/UEM</title>
-<meta name="description" content="V Simpósio de Pós-Graduação, Pesquisa e Extensão em Administração do PPA/UEM. Submissão de trabalhos de 15/07 a 17/08/2026. Evento de 14 a 16 de setembro de 2026, Maringá-PR.">
+<meta name="description" content="V Simpósio de Pós-Graduação, Pesquisa e Extensão em Administração do PPA/UEM. Submissão de trabalhos de 15/07 a 14/08/2026. Evento de 14 a 16 de setembro de 2026, Maringá-PR.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
@@ -102,6 +102,11 @@ textarea{min-height:120px;resize:vertical}
 .status-caixa{margin-top:18px;padding:18px;background:var(--papel);border:1px solid var(--linha);border-radius:6px;font-size:15px}
 .status-caixa strong{color:var(--tinta)}
 
+/* ---------- inscrição (formulário embutido) ---------- */
+.form-embed{margin-top:20px;border:1px solid var(--linha);border-radius:8px;overflow:hidden;background:var(--branco)}
+.form-embed iframe{display:block;width:100%;min-height:900px;border:0}
+.form-alt{margin-top:16px;font-size:14px;color:var(--cinza)}
+
 footer{background:var(--tinta);color:#9DB0C6;padding:36px 0;font-size:14px;margin-top:40px}
 footer strong{color:var(--branco)}
 
@@ -123,7 +128,7 @@ footer strong{color:var(--branco)}
     <p class="sub">O V SimPPA reúne pesquisadores, docentes e estudantes para o debate da produção científica em Administração.</p>
     <div class="datas-topo">
       <div><div class="rotulo">Evento</div><div class="valor">14 a 16 · set · 2026</div></div>
-      <div><div class="rotulo">Submissões</div><div class="valor">15/07 → 17/08</div></div>
+      <div><div class="rotulo">Submissões</div><div class="valor">15/07 → 14/08</div></div>
       <div><div class="rotulo">Local</div><div class="valor">UEM · Maringá-PR</div></div>
     </div>
   </div>
@@ -136,8 +141,8 @@ footer strong{color:var(--branco)}
     <a href="#normas">Normas</a>
     <a href="#submeter">Submeter trabalho</a>
     <a href="#status">Consultar status</a>
+    <a href="#inscricao">Inscrição</a>
     <a href="#avaliador">Área do avaliador</a>
-    <a href="https://ppa.uem.br/v-simppa-2026/anais-das-edicoes-anteriores" target="_blank">Anais de edições anteriores</a>
   </div>
 </nav>
 
@@ -148,7 +153,7 @@ footer strong{color:var(--branco)}
     <p class="h2-sub">Calendário oficial do V SimPPA 2026.</p>
     <ul class="cronograma">
       <li><span class="data mono">15/07/2026</span><span class="etapa">Abertura das submissões</span></li>
-      <li class="destaque"><span class="data mono">17/08/2026</span><span class="etapa">Data-limite para submissão de trabalhos</span></li>
+      <li class="destaque"><span class="data mono">14/08/2026</span><span class="etapa">Data-limite para submissão de trabalhos</span></li>
       <li><span class="data mono">17/08 – 03/09</span><span class="etapa">Avaliação dos trabalhos pelos pareceristas</span></li>
       <li><span class="data mono">04/09/2026</span><span class="etapa">Divulgação dos resultados</span></li>
       <li><span class="data mono">09/09/2026</span><span class="etapa">Início das inscrições dos autores</span></li>
@@ -195,7 +200,7 @@ footer strong{color:var(--branco)}
       <div class="area-num">5</div>
       <div>
         <h3>Estudos em Ciências Sociais Aplicadas</h3>
-        <p>Administração Pública; Empreendedorismo; Ensino e Pesquisa em Administração; Finanças; Outras temáticas correlatas das ciências sociais aplicadas.</p>
+        <p>Administração Pública; Empreendedorismo; Ensino e Pesquisa em Administração; Finanças.</p>
       </div>
     </div>
   </div>
@@ -207,11 +212,9 @@ footer strong{color:var(--branco)}
     <h2>Normas de submissão</h2>
     <p class="h2-sub">Leia com atenção antes de enviar o trabalho.</p>
     <div class="card">
-      <p><strong>Modalidades aceitas:</strong> "Artigo Completo", "Resumo Expandido" e "Ensaio Teórico / Projeto de Pesquisa.</p>
+      <p><strong>Modalidades aceitas:</strong> Artigo Completo e Resumo Expandido.</p>
       <p style="margin-top:12px"><strong>Formato do arquivo:</strong> PDF, com no máximo 10 MB.</p>
-      <p style="margin-top:12px"><strong>Template:</strong> utilize o modelo oficial de formatação para preparar o seu artigo.</p>
-      <a class="download-link" href="SIMPPA_Modelo_Normas_2026.docx" download>⬇ Baixar template de submissão (.docx)</a>
-      <p style="margin-top:12px"><strong>Identificação cega:</strong> o arquivo enviado <strong>não pode conter identificação dos autores</strong> — remova nomes, filiações, agradecimentos e propriedades do documento que identifiquem a autoria. Trabalhos identificados poderão ser desclassificados.</p>
+      <p style="margin-top:12px"><strong>Avaliação cega:</strong> o arquivo enviado <strong>não pode conter identificação dos autores</strong> — remova nomes, filiações, agradecimentos e propriedades do documento que identifiquem a autoria. Trabalhos identificados poderão ser desclassificados.</p>
       <p style="margin-top:12px"><strong>Avaliação:</strong> cada trabalho será avaliado por dois pareceristas da área temática indicada, no sistema double-blind review.</p>
       <p style="margin-top:12px"><strong>Publicação:</strong> os trabalhos aprovados e apresentados no evento serão publicados nos Anais do V SimPPA.</p>
     </div>
@@ -231,7 +234,6 @@ footer strong{color:var(--branco)}
           <option value="">Selecione…</option>
           <option>Artigo Completo</option>
           <option>Resumo Expandido</option>
-          <option>Ensaio Teórico / Projeto de Pesquisa</option>
         </select>
 
         <label for="area">Área temática *</label>
@@ -293,6 +295,31 @@ footer strong{color:var(--branco)}
   </div>
 </section>
 
+<!-- ==================== INSCRIÇÃO ==================== -->
+<section id="inscricao">
+  <div class="container">
+    <h2>Inscrição</h2>
+    <p class="h2-sub">A inscrição no V SimPPA 2026 é <strong>gratuita</strong>. As inscrições dos autores de trabalhos aprovados abrem em 09/09/2026 — ao menos um autor deve se inscrever para garantir a apresentação e a publicação nos anais.</p>
+
+    <div class="card">
+      <div class="aviso">A inscrição não tem taxa. Preencha o formulário abaixo; você receberá a confirmação no e-mail informado.</div>
+
+      <div class="form-embed">
+        <iframe id="iframe-inscricao"
+                src="about:blank"
+                title="Formulário de inscrição — V SimPPA 2026"
+                loading="lazy">Carregando…</iframe>
+      </div>
+
+      <p class="form-alt">O formulário não carregou ou você está no celular?
+        <a id="link-inscricao" href="#inscricao" target="_blank" rel="noopener">
+          <button type="button" class="botao-sec">Abrir formulário de inscrição em nova aba</button>
+        </a>
+      </p>
+    </div>
+  </div>
+</section>
+
 <!-- ==================== ÁREA DO AVALIADOR ==================== -->
 <section id="avaliador">
   <div class="container">
@@ -339,8 +366,7 @@ footer strong{color:var(--branco)}
   <div class="container">
     <strong>V SimPPA 2026</strong> · Programa de Pós-Graduação em Administração — PPA/UEM<br>
     Universidade Estadual de Maringá · Maringá, Paraná<br>
-    Anais de edições anteriores: <a href="https://ppa.uem.br/v-simppa-2026/anais-das-edicoes-anteriores" target="_blank" style="color:#9DB0C6">ppa.uem.br</a><br> 
-    Dúvidas: <span id="email-contato">simppa@uem.br</span>
+    Dúvidas: <span id="email-contato">comissao@uem.br</span>
   </div>
 </footer>
 
@@ -350,7 +376,24 @@ footer strong{color:var(--branco)}
    cole abaixo a URL do Aplicativo da Web (Apps Script).
    Ela termina com /exec
    ============================================================ */
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwOkufEQ6t8nTKtxOpgIpQkcB0ZqNYNerNtVNgmK2CotDASq6J5hgo7Ma6AVMDWNI46/exec";
+const SCRIPT_URL = "COLE_AQUI_A_URL_DO_APPS_SCRIPT";
+
+/* ------------------------------------------------------------
+   INSCRIÇÃO (Google Formulário — sem script):
+   Cole abaixo o LINK COMPARTILHÁVEL do formulário (botão "Enviar"
+   do Google Forms > ícone de corrente/link). Termina em algo como
+   ".../viewform".  O site monta sozinho a versão embutida.
+   ------------------------------------------------------------ */
+const FORM_URL = "https://forms.gle/U9awxahcqnZYFoHW6";
+
+(function configurarInscricao(){
+  if (!FORM_URL || FORM_URL.indexOf("http") !== 0) return; // ainda não configurado
+  const embedUrl = FORM_URL.replace(/\?.*$/, "") + "?embedded=true";
+  const iframe = document.getElementById("iframe-inscricao");
+  const link = document.getElementById("link-inscricao");
+  if (iframe) iframe.src = embedUrl;
+  if (link) link.href = FORM_URL;
+})();
 
 /* ---------- autores dinâmicos ---------- */
 let numAutores = 0;
